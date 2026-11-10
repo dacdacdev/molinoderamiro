@@ -5,6 +5,7 @@
 
 /* ─── CSS Custom Properties ─────────────────────────── */
 :root {
+    color-scheme: dark;
     --bg:           #0C0B09;
     --bg-alt:       #141210;
     --bg-card:      #1A1814;
@@ -1034,10 +1035,17 @@ img {
     position: relative;
 }
 
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.8) sepia(1) saturate(5) hue-rotate(5deg);
+    cursor: pointer;
+    opacity: 0.8;
+}
+
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
+    min-height: 48px;
     padding: 16px 0 8px;
     font-family: var(--font-body);
     font-size: 16px; /* 16px prevents iOS Safari auto-zoom on focus */
@@ -1050,6 +1058,7 @@ img {
     transition: border-color 0.3s ease;
     -webkit-appearance: none;
     appearance: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .form-group select {
@@ -1343,6 +1352,299 @@ img {
     transform: translateY(40px);
 }
 
+/* ─── Mobile Enhancements & Interactive Components ─── */
+
+/* Mobile Touch Actions (Call & WhatsApp cards) */
+.reservas-quick-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.btn-touch-action {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border: 1px solid rgba(200, 169, 110, 0.25);
+    border-radius: 8px;
+    color: var(--cream);
+    transition: all 0.3s ease;
+}
+
+.btn-touch-action:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    background: rgba(200, 169, 110, 0.08);
+}
+
+.btn-touch-action svg {
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.btn-touch-action.wa svg {
+    color: #25D366;
+}
+
+.btn-touch-action .action-small {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.btn-touch-action .action-main {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--cream);
+}
+
+/* Today Quick Decision Chip */
+.today-shortcut-wrap {
+    margin-bottom: 24px;
+}
+
+.btn-today-chip {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 18px;
+    background: rgba(200, 169, 110, 0.1);
+    border: 1px dashed var(--gold);
+    border-radius: 30px;
+    color: var(--gold-light);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-today-chip:hover,
+.btn-today-chip.active {
+    background: var(--gold);
+    color: var(--bg);
+    border-style: solid;
+}
+
+.btn-today-chip .chip-dot {
+    width: 8px;
+    height: 8px;
+    background: #25D366;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #25D366;
+    animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+/* Guest Quick Pills */
+.guest-quick-pills {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: -12px;
+    margin-bottom: 24px;
+}
+
+.pills-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-right: 4px;
+}
+
+.guest-pill {
+    background: var(--bg-card);
+    border: 1px solid rgba(200, 169, 110, 0.2);
+    border-radius: 20px;
+    color: var(--cream-soft);
+    padding: 6px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.guest-pill:hover,
+.guest-pill.active {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+    font-weight: 600;
+}
+
+/* Mobile Swipe Hint */
+.mobile-swipe-hint {
+    display: none;
+    text-align: right;
+    margin-top: -24px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+/* Map direct button */
+.map-link-btn {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gold);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.map-link-btn:hover {
+    color: var(--cream);
+}
+
+.direct-tel {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gold);
+}
+
+/* Mobile Drawer Extra Elements */
+.mobile-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: var(--cream);
+    font-size: 32px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 8px;
+}
+
+.mobile-lang-wrap {
+    margin-bottom: 16px;
+}
+
+.lang-toggle-mobile {
+    background: rgba(200, 169, 110, 0.1);
+    border: 1px solid rgba(200, 169, 110, 0.4);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.lang-current-mobile {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.mobile-link.highlight {
+    color: var(--gold);
+}
+
+.mobile-menu-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+    width: 100%;
+    max-width: 280px;
+}
+
+.mobile-contact-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--bg-card);
+    border: 1px solid rgba(200, 169, 110, 0.3);
+    color: var(--cream);
+    font-size: 14px;
+}
+
+.mobile-contact-pill.wa {
+    border-color: rgba(37, 211, 102, 0.4);
+    color: #25D366;
+}
+
+/* Floating Bottom Action Bar (Mobile Only) */
+.mobile-action-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 998;
+    background: rgba(12, 11, 9, 0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(200, 169, 110, 0.25);
+    padding: 8px 12px;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    justify-content: space-around;
+    align-items: center;
+}
+
+.action-bar-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border-radius: 6px;
+    min-width: 64px;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.action-bar-btn svg {
+    color: var(--cream);
+    transition: color 0.2s ease;
+}
+
+.action-bar-btn:active {
+    transform: scale(0.95);
+}
+
+.action-bar-btn.action-bar-wa svg {
+    color: #25D366;
+}
+
+.action-bar-btn.action-bar-cta {
+    background: var(--gold);
+    color: var(--bg);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.action-bar-btn.action-bar-cta svg {
+    color: var(--bg);
+}
+
 /* ─── Responsive ────────────────────────────────────── */
 @media (max-width: 1024px) {
     .nav-links {
@@ -1388,16 +1690,44 @@ img {
 @media (max-width: 768px) {
     :root {
         --nav-height: 64px;
+        --section-pad: 64px;
+    }
+
+    /* Reserve space for fixed bottom action bar */
+    body {
+        padding-bottom: 74px;
+    }
+
+    /* Show floating mobile action bar */
+    .mobile-action-bar {
+        display: flex;
+    }
+
+    .mobile-swipe-hint {
+        display: block;
     }
 
     .nav-cta {
         display: none;
     }
 
+    .hero-title {
+        font-size: clamp(40px, 11vw, 64px);
+    }
+
+    .hero-tagline {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
     .form-row-2,
     .form-row-3 {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 20px;
+    }
+
+    .reservas-quick-buttons {
+        flex-direction: column;
     }
 
     .footer-top {
@@ -1411,37 +1741,69 @@ img {
         opacity: 0.5;
     }
 
+    /* Smooth swipeable horizontal gallery with scroll snap */
     .section-gallery {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
-        scrollbar-width: none; /* Hide scrollbar Firefox */
+        scrollbar-width: none;
+        padding-bottom: 10px;
     }
 
     .section-gallery::-webkit-scrollbar {
-        display: none; /* Hide scrollbar Chrome/Safari */
+        display: none;
     }
 
     .gallery-horizontal {
-        padding-bottom: 30px;
+        padding: 0 20px 24px;
+        gap: 16px;
     }
 
     .gallery-item {
-        width: 260px;
-        scroll-snap-align: start;
+        width: 78vw;
+        max-width: 320px;
+        scroll-snap-align: center;
+        flex-shrink: 0;
+    }
+
+    .gallery-img-wrap {
+        aspect-ratio: 4/5;
     }
 
     .img-reveal img {
-        height: 350px;
+        height: 320px;
+    }
+
+    .contacto-map iframe {
+        height: 320px;
     }
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+
     .hero-title {
-        font-size: 40px;
+        font-size: 38px;
     }
 
     .big-quote {
-        font-size: 22px;
+        font-size: 20px;
+    }
+
+    .stat-number {
+        font-size: 32px;
+    }
+
+    .pillar-card {
+        padding: 24px 20px;
+    }
+
+    .reservas-info h2,
+    .contacto-info h2,
+    .historia-text h2,
+    .gastro-text h2 {
+        font-size: 28px;
     }
 }

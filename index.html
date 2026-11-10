@@ -2,7 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0C0B09">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Molino de Ramiro | Museo-Restaurante desde 1874</title>
     <meta name="description" content="Museo-restaurante en un antiguo molino de aceite de 1874. Cultura, historia y gastronomía en Castro del Río, Córdoba.">
     <meta name="keywords" content="molino de ramiro, restaurante córdoba, museo restaurante, castro del río, molino de aceite, gastronomía andaluza">
@@ -36,7 +39,7 @@
     </div>
 
     <!-- ══════════════════════════════════════════════
-         CUSTOM CURSOR
+         CUSTOM CURSOR (Desactivado en móviles táctiles)
     ══════════════════════════════════════════════ -->
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-outline" id="cursorOutline"></div>
@@ -45,7 +48,7 @@
          NAVIGATION
     ══════════════════════════════════════════════ -->
     <nav class="navbar" id="navbar">
-        <a href="#hero" class="nav-logo">
+        <a href="#hero" class="nav-logo" aria-label="Molino de Ramiro inicio">
             <span class="logo-text">MOLINO DE RAMIRO</span>
         </a>
 
@@ -59,13 +62,13 @@
         </div>
 
         <div class="nav-actions">
-            <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+            <button class="lang-toggle" id="langToggle" aria-label="Cambiar idioma / Switch language">
                 <span class="lang-current">ES</span>
                 <span class="lang-divider">/</span>
                 <span class="lang-other">EN</span>
             </button>
             <a href="#reservas" class="nav-cta" data-es="Reservar" data-en="Book">Reservar</a>
-            <button class="hamburger" id="hamburger" aria-label="Menu">
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -73,15 +76,34 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu" id="mobileMenu">
+    <!-- Mobile Menu Overlay (Optimizado para dedo/pulgar) -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú">✕</button>
         <div class="mobile-menu-inner">
+            <div class="mobile-lang-wrap">
+                <button class="lang-toggle-mobile" id="langToggleMobile" aria-label="Cambiar idioma">
+                    <span class="lang-current-mobile">ES</span>
+                    <span class="lang-divider">/</span>
+                    <span class="lang-other-mobile">EN</span>
+                </button>
+            </div>
             <a href="#hero" class="mobile-link" data-es="Inicio" data-en="Home">Inicio</a>
             <a href="#historia" class="mobile-link" data-es="Historia" data-en="History">Historia</a>
             <a href="#experiencia" class="mobile-link" data-es="Experiencia" data-en="Experience">Experiencia</a>
             <a href="#gastronomia" class="mobile-link" data-es="Gastronomía" data-en="Gastronomy">Gastronomía</a>
-            <a href="#reservas" class="mobile-link" data-es="Reservas" data-en="Reservations">Reservas</a>
+            <a href="#reservas" class="mobile-link highlight" data-es="Reservas" data-en="Reservations">Reservas</a>
             <a href="#contacto" class="mobile-link" data-es="Contacto" data-en="Contact">Contacto</a>
+
+            <div class="mobile-menu-contacts">
+                <a href="tel:+34648606480" class="mobile-contact-pill">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    648 606 480
+                </a>
+                <a href="https://wa.me/34648606480?text=Hola,%20me%20gustar%C3%ADa%20hacer%20una%20consulta%20o%20reserva" target="_blank" rel="noopener" class="mobile-contact-pill wa">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.302c-.087.087-.179.182-.077.357.101.174.45 1.48 1.054 2.019.779.694 1.436.909 1.64.996.202.087.32.072.438-.063.119-.135.508-.592.643-.794.135-.202.27-.168.455-.101.185.067 1.172.553 1.374.654.202.101.336.15.385.234.048.084.048.487-.096.892z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
         </div>
     </div>
 
@@ -162,7 +184,7 @@
                             <span class="stat-label" data-es="Año de fundación" data-en="Year founded">Año de fundación</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number" data-count="152">0</span>
+                            <span class="stat-number" data-count="150">0</span>
                             <span class="stat-suffix">+</span>
                             <span class="stat-label" data-es="Años de historia" data-en="Years of history">Años de historia</span>
                         </div>
@@ -251,7 +273,7 @@
     </section>
 
     <!-- ══════════════════════════════════════════════
-         HORIZONTAL GALLERY
+         HORIZONTAL GALLERY (Con Swipe suave en móvil)
     ══════════════════════════════════════════════ -->
     <section class="section section-gallery">
         <div class="container">
@@ -259,6 +281,10 @@
                 <span class="section-number">03</span>
                 <span class="section-label" data-es="Galería" data-en="Gallery">Galería</span>
                 <div class="section-line"></div>
+            </div>
+            <!-- Swipe hint for mobile -->
+            <div class="mobile-swipe-hint">
+                <span data-es="← Desliza para explorar fotos →" data-en="← Swipe to explore photos →">← Desliza para explorar fotos →</span>
             </div>
         </div>
         <div class="gallery-horizontal" id="galleryTrack">
@@ -357,7 +383,7 @@
     </section>
 
     <!-- ══════════════════════════════════════════════
-         RESERVAS SECTION
+         RESERVAS SECTION (Super optimizada para móvil)
     ══════════════════════════════════════════════ -->
     <section id="reservas" class="section section-reservas">
         <div class="container">
@@ -372,46 +398,59 @@
                     <h2 class="reveal-text" data-es="Reserve su experiencia" data-en="Book your experience">
                         Reserve su<br>experiencia
                     </h2>
-                    <p class="reveal-up" data-es="Le recomendamos reservar con antelación para garantizar su mesa. También puede decidir en el momento y reservar directamente desde su móvil." data-en="We recommend booking in advance to guarantee your table. You can also decide on the spot and book directly from your phone.">
-                        Le recomendamos reservar con antelación para garantizar su mesa. También puede decidir en el momento y reservar directamente desde su móvil.
+                    <p class="reveal-up" data-es="¿Decides a última hora desde el móvil o planificas con antelación? Reserva al instante o contáctanos directamente con un toque." data-en="Deciding last minute from your phone or planning ahead? Book instantly or contact us directly with a single tap.">
+                        ¿Decides a última hora desde el móvil o planificas con antelación? Reserva al instante o contáctanos directamente con un toque.
                     </p>
-                    <div class="reservas-contact reveal-up">
-                        <div class="contact-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5">
-                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-                            </svg>
-                            <a href="tel:+34648606480">648 606 480</a>
-                        </div>
-                        <div class="contact-item">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                            <a href="mailto:molinoderamiro@gmail.com">molinoderamiro@gmail.com</a>
-                        </div>
+
+                    <!-- Direct mobile touch triggers -->
+                    <div class="reservas-quick-buttons reveal-up">
+                        <a href="tel:+34648606480" class="btn-touch-action">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                            <div>
+                                <span class="action-small" data-es="Llamada directa" data-en="Direct Call">Llamada directa</span>
+                                <span class="action-main">648 606 480</span>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/34648606480?text=Hola,%20quiero%20hacer%20una%20reserva%20en%20el%20Molino%20de%20Ramiro" target="_blank" rel="noopener" class="btn-touch-action wa">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.302c-.087.087-.179.182-.077.357.101.174.45 1.48 1.054 2.019.779.694 1.436.909 1.64.996.202.087.32.072.438-.063.119-.135.508-.592.643-.794.135-.202.27-.168.455-.101.185.067 1.172.553 1.374.654.202.101.336.15.385.234.048.084.048.487-.096.892z"/></svg>
+                            <div>
+                                <span class="action-small" data-es="Respuesta rápida" data-en="Quick reply">Respuesta rápida</span>
+                                <span class="action-main">WhatsApp</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
 
                 <form class="reservas-form reveal-up" id="reservationForm" novalidate>
+                    <!-- Quick Today Chip for mobile decisions -->
+                    <div class="today-shortcut-wrap">
+                        <button type="button" class="btn-today-chip" id="btnTodayShortcut">
+                            <span class="chip-dot"></span>
+                            <span data-es="¿Vienes hoy? Toca aquí para rellenar la fecha de hoy" data-en="Visiting today? Tap here for today's date">¿Vienes hoy? Toca aquí para rellenar la fecha de hoy</span>
+                        </button>
+                    </div>
+
                     <div class="form-row">
                         <div class="form-group">
-                            <input type="text" id="formName" name="name" required autocomplete="name">
+                            <input type="text" id="formName" name="name" required autocomplete="name" placeholder=" ">
                             <label for="formName" data-es="Nombre completo" data-en="Full name">Nombre completo</label>
                             <div class="form-line"></div>
                         </div>
                     </div>
+
                     <div class="form-row form-row-2">
                         <div class="form-group">
-                            <input type="email" id="formEmail" name="email" required autocomplete="email">
+                            <input type="email" id="formEmail" name="email" required autocomplete="email" inputmode="email" autocapitalize="off" placeholder=" ">
                             <label for="formEmail" data-es="Email" data-en="Email">Email</label>
                             <div class="form-line"></div>
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="formPhone" name="phone" required autocomplete="tel">
-                            <label for="formPhone" data-es="Teléfono" data-en="Phone">Teléfono</label>
+                            <input type="tel" id="formPhone" name="phone" required autocomplete="tel" inputmode="tel" placeholder=" ">
+                            <label for="formPhone" data-es="Teléfono móvil" data-en="Mobile phone">Teléfono móvil</label>
                             <div class="form-line"></div>
                         </div>
                     </div>
+
                     <div class="form-row form-row-3">
                         <div class="form-group">
                             <input type="date" id="formDate" name="date" required>
@@ -420,7 +459,7 @@
                         </div>
                         <div class="form-group">
                             <select id="formTime" name="time" required>
-                                <option value="" disabled selected></option>
+                                <option value="" disabled selected data-es="Seleccionar hora" data-en="Select time">Seleccionar hora</option>
                                 <option value="13:00">13:00</option>
                                 <option value="13:30">13:30</option>
                                 <option value="14:00">14:00</option>
@@ -437,49 +476,63 @@
                         </div>
                         <div class="form-group">
                             <select id="formGuests" name="guests" required>
-                                <option value="" disabled selected></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10+</option>
+                                <option value="" disabled selected data-es="Comensales" data-en="Guests">Comensales</option>
+                                <option value="1">1 persona</option>
+                                <option value="2" selected>2 personas</option>
+                                <option value="3">3 personas</option>
+                                <option value="4">4 personas</option>
+                                <option value="5">5 personas</option>
+                                <option value="6">6 personas</option>
+                                <option value="7">7 personas</option>
+                                <option value="8">8 personas</option>
+                                <option value="9">9 personas</option>
+                                <option value="10">10 o más</option>
                             </select>
-                            <label for="formGuests" class="label-active" data-es="Comensales" data-en="Guests">Comensales</label>
+                            <label for="formGuests" class="label-active" data-es="Personas" data-en="People">Personas</label>
                             <div class="form-line"></div>
                         </div>
                     </div>
+
+                    <!-- Fast guest selector pills for quick mobile tap -->
+                    <div class="guest-quick-pills">
+                        <span class="pills-label" data-es="Acceso rápido:" data-en="Quick select:">Acceso rápido:</span>
+                        <button type="button" class="guest-pill" data-guests="2">2 pers.</button>
+                        <button type="button" class="guest-pill" data-guests="4">4 pers.</button>
+                        <button type="button" class="guest-pill" data-guests="6">6 pers.</button>
+                        <button type="button" class="guest-pill" data-guests="8">8+ pers.</button>
+                    </div>
+
                     <div class="form-row">
                         <div class="form-group">
-                            <textarea id="formMessage" name="message" rows="3"></textarea>
-                            <label for="formMessage" data-es="Peticiones especiales (alergias, celebraciones...)" data-en="Special requests (allergies, celebrations...)">Peticiones especiales (alergias, celebraciones...)</label>
+                            <textarea id="formMessage" name="message" rows="2" placeholder=" "></textarea>
+                            <label for="formMessage" data-es="Peticiones especiales o alergias (opcional)" data-en="Special requests or allergies (optional)">Peticiones especiales o alergias (opcional)</label>
                             <div class="form-line"></div>
                         </div>
                     </div>
+
                     <div class="form-row form-row-check">
                         <label class="checkbox-wrap">
                             <input type="checkbox" id="formPrivacy" name="privacy" required>
                             <span class="checkmark"></span>
-                            <span class="checkbox-text" data-es="Acepto la <a href='legal/politica-privacidad.html'>política de privacidad</a>" data-en="I accept the <a href='legal/politica-privacidad.html'>privacy policy</a>">Acepto la <a href="legal/politica-privacidad.html">política de privacidad</a></span>
+                            <span class="checkbox-text" data-es="He leído y acepto la <a href='politica-privacidad.html'>política de privacidad</a>" data-en="I have read and accept the <a href='politica-privacidad.html'>privacy policy</a>">He leído y acepto la <a href="politica-privacidad.html">política de privacidad</a></span>
                         </label>
                     </div>
-                    <button type="submit" class="btn-primary btn-submit">
-                        <span data-es="Enviar Reserva" data-en="Send Reservation">Enviar Reserva</span>
+
+                    <button type="submit" class="btn-primary btn-submit" id="btnSubmit">
+                        <span data-es="Confirmar Reserva" data-en="Confirm Reservation">Confirmar Reserva</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="5" y1="12" x2="19" y2="12"/>
                             <polyline points="12 5 19 12 12 19"/>
                         </svg>
                     </button>
+
                     <div class="form-success" id="formSuccess">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5">
+                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                             <polyline points="22 4 12 14.01 9 11.01"/>
                         </svg>
-                        <p data-es="¡Reserva enviada con éxito! Nos pondremos en contacto para confirmar." data-en="Reservation sent successfully! We will contact you to confirm.">¡Reserva enviada con éxito! Nos pondremos en contacto para confirmar.</p>
+                        <h3 data-es="¡Solicitud de Reserva Recibida!" data-en="Reservation Request Received!">¡Solicitud de Reserva Recibida!</h3>
+                        <p data-es="Nos pondremos en contacto contigo por teléfono o WhatsApp para confirmar tu mesa de inmediato." data-en="We will contact you via phone or WhatsApp immediately to confirm your table.">Nos pondremos en contacto contigo por teléfono o WhatsApp para confirmar tu mesa de inmediato.</p>
                     </div>
                 </form>
             </div>
@@ -512,6 +565,7 @@
                             <div>
                                 <h4 data-es="Dirección" data-en="Address">Dirección</h4>
                                 <p>Calle los Molinos 29<br>14840 Castro del Río, Córdoba</p>
+                                <a href="https://maps.google.com/?q=Calle+los+molinos+29,+14840+Castro+del+R%C3%ADo,+C%C3%B3rdoba" target="_blank" rel="noopener" class="map-link-btn" data-es="Abrir en Google Maps →" data-en="Open in Google Maps →">Abrir en Google Maps →</a>
                             </div>
                         </div>
 
@@ -522,8 +576,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 data-es="Teléfono" data-en="Phone">Teléfono</h4>
-                                <p><a href="tel:+34648606480">648 606 480</a></p>
+                                <h4 data-es="Teléfono directo" data-en="Direct Phone">Teléfono directo</h4>
+                                <p><a href="tel:+34648606480" class="direct-tel">648 606 480</a></p>
                             </div>
                         </div>
 
@@ -546,7 +600,7 @@
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12612.0!2d-4.477!3d37.687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQxJzEzLjIiTiA0wrAyOCczNy4yIlc!5e0!3m2!1ses!2ses!4v1"
                         width="100%"
-                        height="450"
+                        height="400"
                         style="border:0; border-radius: 8px; filter: grayscale(0.8) contrast(1.1);"
                         allowfullscreen=""
                         loading="lazy"
@@ -582,9 +636,9 @@
 
                 <div class="footer-legal-links">
                     <h4 data-es="Legal" data-en="Legal">Legal</h4>
-                    <a href="legal/politica-privacidad.html" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a>
-                    <a href="legal/terminos-legales.html" data-es="Términos Legales" data-en="Legal Terms">Términos Legales</a>
-                    <a href="legal/aviso-legal.html" data-es="Aviso Legal" data-en="Legal Notice">Aviso Legal</a>
+                    <a href="politica-privacidad.html" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a>
+                    <a href="terminos-legales.html" data-es="Términos Legales" data-en="Legal Terms">Términos Legales</a>
+                    <a href="aviso-legal.html" data-es="Aviso Legal" data-en="Legal Notice">Aviso Legal</a>
                 </div>
 
                 <div class="footer-contact">
@@ -600,6 +654,33 @@
             </div>
         </div>
     </footer>
+
+    <!-- ══════════════════════════════════════════════
+         MOBILE FLOATING ACTION BAR (Barra fija inferior)
+         Especialmente diseñada para clientes que deciden
+         el mismo día desde el smartphone.
+    ══════════════════════════════════════════════ -->
+    <div class="mobile-action-bar" id="mobileActionBar" role="region" aria-label="Acciones rápidas para móvil">
+        <a href="tel:+34648606480" class="action-bar-btn" aria-label="Llamar al restaurante">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            <span data-es="Llamar" data-en="Call">Llamar</span>
+        </a>
+
+        <a href="https://wa.me/34648606480?text=Hola,%20me%20gustar%C3%ADa%20hacer%20una%20reserva%20en%20el%20Molino%20de%20Ramiro" target="_blank" rel="noopener" class="action-bar-btn action-bar-wa" aria-label="WhatsApp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.302c-.087.087-.179.182-.077.357.101.174.45 1.48 1.054 2.019.779.694 1.436.909 1.64.996.202.087.32.072.438-.063.119-.135.508-.592.643-.794.135-.202.27-.168.455-.101.185.067 1.172.553 1.374.654.202.101.336.15.385.234.048.084.048.487-.096.892z"/></svg>
+            <span>WhatsApp</span>
+        </a>
+
+        <a href="#reservas" class="action-bar-btn action-bar-cta" aria-label="Ir a Reservar mesa">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span data-es="Reservar" data-en="Book">Reservar</span>
+        </a>
+
+        <a href="https://maps.google.com/?q=Calle+los+molinos+29,+14840+Castro+del+R%C3%ADo,+C%C3%B3rdoba" target="_blank" rel="noopener" class="action-bar-btn" aria-label="Cómo llegar en Google Maps">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            <span data-es="Cómo llegar" data-en="Map">Cómo llegar</span>
+        </a>
+    </div>
 
     <!-- ══════════════════════════════════════════════
          SCRIPTS

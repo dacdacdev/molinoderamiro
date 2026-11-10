@@ -18,16 +18,21 @@
         0.1,
         1000
     );
-    camera.position.z = 120;
+    const isMobile = window.innerWidth <= 768;
+    camera.position.z = isMobile ? 155 : 120;
+
+    // Ensure canvas never traps vertical touch scrolling on mobile
+    canvas.style.pointerEvents = 'none';
+    canvas.style.touchAction = 'pan-y';
 
     const renderer = new THREE.WebGLRenderer({
         canvas: canvas,
         alpha: true,
-        antialias: true,
-        powerPreference: 'high-performance'
+        antialias: !isMobile,
+        powerPreference: isMobile ? 'default' : 'high-performance'
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
 
     // Group for all rotating elements
     const worldGroup = new THREE.Group();

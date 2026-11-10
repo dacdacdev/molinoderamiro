@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHorizontalGallery();
     initStatsCounter();
     initReservationForm();
+    initMobileFeatures();
 });
 
 /* ─── 1. PRELOADER ────────────────────────────────────── */
@@ -80,31 +81,52 @@ function initNavbar() {
     const navbar = document.getElementById('navbar');
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
     const mobileLinks = document.querySelectorAll('.mobile-link');
 
     // Scroll state
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+        if (window.scrollY > 40) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
     }, { passive: true });
 
-    // Mobile menu toggle
+    function closeMobile() {
+        if (hamburger) hamburger.classList.remove('active');
+        if (mobileMenu) {
+            mobileMenu.classList.remove('active');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+        }
+        document.body.style.overflow = '';
+    }
+
+    function openMobile() {
+        if (hamburger) hamburger.classList.add('active');
+        if (mobileMenu) {
+            mobileMenu.classList.add('active');
+            mobileMenu.setAttribute('aria-hidden', 'false');
+        }
+        document.body.style.overflow = 'hidden';
+    }
+
     if (hamburger && mobileMenu) {
         hamburger.addEventListener('click', () => {
-            const isActive = hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active', isActive);
-            document.body.style.overflow = isActive ? 'hidden' : '';
+            const isOpen = mobileMenu.classList.contains('active');
+            if (isOpen) {
+                closeMobile();
+            } else {
+                openMobile();
+            }
         });
 
+        if (mobileClose) {
+            mobileClose.addEventListener('click', closeMobile);
+        }
+
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
+            link.addEventListener('click', closeMobile);
         });
     }
 }
@@ -114,26 +136,37 @@ let currentLang = localStorage.getItem('molino_lang') || 'es';
 
 function initLanguage() {
     const langToggle = document.getElementById('langToggle');
+    const langToggleMobile = document.getElementById('langToggleMobile');
+
     applyLanguage(currentLang);
 
-    if (langToggle) {
-        langToggle.addEventListener('click', () => {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
-            localStorage.setItem('molino_lang', currentLang);
-            applyLanguage(currentLang);
-        });
+    function toggleLang() {
+        currentLang = currentLang === 'es' ? 'en' : 'es';
+        localStorage.setItem('molino_lang', currentLang);
+        applyLanguage(currentLang);
     }
+
+    if (langToggle) langToggle.addEventListener('click', toggleLang);
+    if (langToggleMobile) langToggleMobile.addEventListener('click', toggleLang);
 }
 
 function applyLanguage(lang) {
     document.documentElement.lang = lang;
 
-    // Toggle button UI
+    // Toggle button UI desktop
     const langCurrent = document.querySelector('.lang-current');
     const langOther = document.querySelector('.lang-other');
     if (langCurrent && langOther) {
         langCurrent.textContent = lang.toUpperCase();
         langOther.textContent = (lang === 'es' ? 'en' : 'es').toUpperCase();
+    }
+
+    // Toggle button UI mobile
+    const langCurrentMobile = document.querySelector('.lang-current-mobile');
+    const langOtherMobile = document.querySelector('.lang-other-mobile');
+    if (langCurrentMobile && langOtherMobile) {
+        langCurrentMobile.textContent = lang.toUpperCase();
+        langOtherMobile.textContent = (lang === 'es' ? 'en' : 'es').toUpperCase();
     }
 
     // Elements with data-es / data-en attributes
@@ -394,7 +427,7 @@ function initReservationForm() {
             successMsg.classList.add('visible');
             form.reset();
 
-            // Restore button after 5 seconds
+            // Restore button after 6 seconds
             setTimeout(() => {
                 successMsg.classList.remove('visible');
                 submitBtn.disabled = false;
@@ -402,5 +435,90 @@ function initReservationForm() {
                 submitBtn.innerHTML = originalText;
             }, 6000);
         }, 1200);
+    });
+}
+
+/* ─── 10. MOBILE FEATURES (Today decision & Fast pills) ─── */
+function initMobileFeatures() {
+    // 1. "Vienes hoy?" shortcut
+    const btnToday = document.getElementById('btnTodayShortcut');
+    const dateInput = document.getElementById('formDate');
+    const timeSelect = document.getElementById('formTime');
+
+    if (btnToday && dateInput) {
+        btnToday.addEventListener('click', () => {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const todayStr = `${yyyy}-${mm}-${dd}`;
+
+            dateInput.value = todayStr;
+            btnToday.classList.add('active');
+
+            // Visual feedback
+            const originalContent = btnToday.innerHTML;
+            btnToday.innerHTML = `<span class="chip-dot"></span> <span>${currentLang === 'es' ? '✓ Fecha de hoy seleccionada' : '✓ Today’s date selected'}</span>`;
+
+            setTimeout(() => {
+                btnToday.innerHTML = originalContent;
+                btnToday.classList.remove('active');
+            }, 3000);
+
+            // Focus on time selector for seamless flow
+            if (timeSelect) {
+                timeSelect.focus();
+            }
+        });
+    }
+
+    // 2. Fast guest selector pills
+    const guestPills = document.querySelectorAll('.guest-pill');
+    const guestSelect = document.getElementById('formGuests');
+
+    if (guestPills.length && guestSelect) {
+        guestPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                const count = pill.getAttribute('data-guests');
+                guestSelect.value = count;
+
+                // Sync active styling
+                guestPills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+            });
+        });
+
+        // Also sync if user changes select directly
+        guestSelect.addEventListener('change', () => {
+            const val = guestSelect.value;
+            guestPills.forEach(pill => {
+                if (pill.getAttribute('data-guests') === val) {
+                    pill.classList.add('active');
+                } else {
+                    pill.classList.remove('active');
+                }
+            });
+        });
+    }
+
+    // 3. Smooth offset scrolling for fixed headers & mobile bottom bar
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#' || targetId === '') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                const navHeight = 70;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
 }
