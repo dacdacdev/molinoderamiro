@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Molino de Ramiro | Museo-Restaurante desde 1874</title>
+    <meta name="description" content="Museo-restaurante en un antiguo molino de aceite de 1874. Cultura, historia y gastronomía en Castro del Río, Córdoba.">
+    <meta name="keywords" content="molino de ramiro, restaurante córdoba, museo restaurante, castro del río, molino de aceite, gastronomía andaluza">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ══════════════════════════════════════════════
+         PRELOADER
+    ══════════════════════════════════════════════ -->
+    <div id="preloader">
+        <div class="preloader-inner">
+            <svg class="mill-wheel-svg" viewBox="0 0 100 100" width="80" height="80">
+                <circle cx="50" cy="50" r="45" stroke="#C8A96E" stroke-width="1" fill="none" opacity="0.3"/>
+                <circle cx="50" cy="50" r="30" stroke="#C8A96E" stroke-width="0.5" fill="none" opacity="0.2"/>
+                <circle cx="50" cy="50" r="5" fill="#C8A96E" opacity="0.8"/>
+                <line x1="50" y1="5" x2="50" y2="95" stroke="#C8A96E" stroke-width="0.8" opacity="0.5"/>
+                <line x1="5" y1="50" x2="95" y2="50" stroke="#C8A96E" stroke-width="0.8" opacity="0.5"/>
+                <line x1="17" y1="17" x2="83" y2="83" stroke="#C8A96E" stroke-width="0.8" opacity="0.5"/>
+                <line x1="83" y1="17" x2="17" y2="83" stroke="#C8A96E" stroke-width="0.8" opacity="0.5"/>
+            </svg>
+            <div class="preloader-text">MOLINO DE RAMIRO</div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         CUSTOM CURSOR
+    ══════════════════════════════════════════════ -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
+    <!-- ══════════════════════════════════════════════
+         NAVIGATION
+    ══════════════════════════════════════════════ -->
+    <nav class="navbar" id="navbar">
+        <a href="#hero" class="nav-logo">
+            <span class="logo-text">MOLINO DE RAMIRO</span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#hero" class="nav-link" data-es="Inicio" data-en="Home">Inicio</a>
+            <a href="#historia" class="nav-link" data-es="Historia" data-en="History">Historia</a>
+            <a href="#experiencia" class="nav-link" data-es="Experiencia" data-en="Experience">Experiencia</a>
+            <a href="#gastronomia" class="nav-link" data-es="Gastronomía" data-en="Gastronomy">Gastronomía</a>
+            <a href="#reservas" class="nav-link" data-es="Reservas" data-en="Reservations">Reservas</a>
+            <a href="#contacto" class="nav-link" data-es="Contacto" data-en="Contact">Contacto</a>
+        </div>
+
+        <div class="nav-actions">
+            <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+                <span class="lang-current">ES</span>
+                <span class="lang-divider">/</span>
+                <span class="lang-other">EN</span>
+            </button>
+            <a href="#reservas" class="nav-cta" data-es="Reservar" data-en="Book">Reservar</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <a href="#hero" class="mobile-link" data-es="Inicio" data-en="Home">Inicio</a>
+            <a href="#historia" class="mobile-link" data-es="Historia" data-en="History">Historia</a>
+            <a href="#experiencia" class="mobile-link" data-es="Experiencia" data-en="Experience">Experiencia</a>
+            <a href="#gastronomia" class="mobile-link" data-es="Gastronomía" data-en="Gastronomy">Gastronomía</a>
+            <a href="#reservas" class="mobile-link" data-es="Reservas" data-en="Reservations">Reservas</a>
+            <a href="#contacto" class="mobile-link" data-es="Contacto" data-en="Contact">Contacto</a>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         HERO SECTION
+    ══════════════════════════════════════════════ -->
+    <section id="hero" class="hero-section">
+        <canvas id="heroCanvas"></canvas>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <div class="hero-subtitle-wrap">
+                <span class="hero-subtitle" data-es="Desde 1874" data-en="Since 1874">Desde 1874</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line"><span class="title-line-inner">Molino</span></span>
+                <span class="title-line"><span class="title-line-inner">de Ramiro</span></span>
+            </h1>
+            <div class="hero-tagline-wrap">
+                <p class="hero-tagline" data-es="Museo · Restaurante · Historia Viva" data-en="Museum · Restaurant · Living History">Museo · Restaurante · Historia Viva</p>
+            </div>
+            <div class="hero-cta-wrap">
+                <a href="#reservas" class="btn-primary hero-cta" data-es="Reservar Mesa" data-en="Book a Table">Reservar Mesa</a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span class="scroll-text" data-es="Descubrir" data-en="Discover">Descubrir</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         MARQUEE
+    ══════════════════════════════════════════════ -->
+    <section class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span>Cultura</span><span class="marquee-dot">·</span>
+                <span>Historia</span><span class="marquee-dot">·</span>
+                <span>Gastronomía</span><span class="marquee-dot">·</span>
+                <span>1874</span><span class="marquee-dot">·</span>
+                <span>Castro del Río</span><span class="marquee-dot">·</span>
+                <span>Córdoba</span><span class="marquee-dot">·</span>
+                <span>Cultura</span><span class="marquee-dot">·</span>
+                <span>Historia</span><span class="marquee-dot">·</span>
+                <span>Gastronomía</span><span class="marquee-dot">·</span>
+                <span>1874</span><span class="marquee-dot">·</span>
+                <span>Castro del Río</span><span class="marquee-dot">·</span>
+                <span>Córdoba</span><span class="marquee-dot">·</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         HISTORIA SECTION
+    ══════════════════════════════════════════════ -->
+    <section id="historia" class="section section-historia">
+        <div class="floating-year" aria-hidden="true">1874</div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <span class="section-label" data-es="Nuestra Historia" data-en="Our History">Nuestra Historia</span>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="historia-grid">
+                <div class="historia-text">
+                    <h2 class="reveal-text" data-es="Un molino de aceite con más de un siglo de historia" data-en="An olive oil mill with over a century of history">
+                        Un molino de aceite<br>con más de un siglo<br>de historia
+                    </h2>
+                    <p class="historia-desc reveal-up" data-es="Molino de Ramiro es mucho más que un restaurante. Es un viaje en el tiempo a 1874, donde la maquinaria original de un antiguo molino de aceite se funde con una experiencia gastronómica única. Cada rincón cuenta una historia, cada plato es un homenaje a nuestra tierra." data-en="Molino de Ramiro is much more than a restaurant. It is a journey back in time to 1874, where the original machinery of an ancient olive oil mill merges with a unique gastronomic experience. Every corner tells a story, every dish is a tribute to our land.">
+                        Molino de Ramiro es mucho más que un restaurante. Es un viaje en el tiempo a 1874, donde la maquinaria original de un antiguo molino de aceite se funde con una experiencia gastronómica única. Cada rincón cuenta una historia, cada plato es un homenaje a nuestra tierra.
+                    </p>
+                    <div class="historia-stats reveal-up">
+                        <div class="stat">
+                            <span class="stat-number" data-count="1874">0</span>
+                            <span class="stat-label" data-es="Año de fundación" data-en="Year founded">Año de fundación</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-count="152">0</span>
+                            <span class="stat-suffix">+</span>
+                            <span class="stat-label" data-es="Años de historia" data-en="Years of history">Años de historia</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-count="3">0</span>
+                            <span class="stat-label" data-es="Pilares fundamentales" data-en="Fundamental pillars">Pilares fundamentales</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="historia-visual">
+                    <div class="img-reveal">
+                        <img src="https://images.unsplash.com/photo-1569880153113-76e33fc52b5f?auto=format&fit=crop&w=800&q=80" alt="Antiguo molino de aceite" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         EXPERIENCIA SECTION — THREE PILLARS
+    ══════════════════════════════════════════════ -->
+    <section id="experiencia" class="section section-experiencia">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <span class="section-label" data-es="La Experiencia" data-en="The Experience">La Experiencia</span>
+                <div class="section-line"></div>
+            </div>
+
+            <h2 class="section-title reveal-text" data-es="Tres pilares, una experiencia única" data-en="Three pillars, one unique experience">
+                Tres pilares,<br>una experiencia única
+            </h2>
+
+            <div class="pillars-grid">
+                <!-- Cultura -->
+                <div class="pillar-card reveal-up">
+                    <div class="pillar-icon-wrap">
+                        <svg class="pillar-icon spin-on-scroll" viewBox="0 0 64 64" fill="none" stroke="#C8A96E" stroke-width="1.5">
+                            <circle cx="32" cy="32" r="28"/>
+                            <path d="M32 4v56M4 32h56M12 12l40 40M52 12L12 52"/>
+                            <circle cx="32" cy="32" r="12"/>
+                            <circle cx="32" cy="32" r="4" fill="#C8A96E"/>
+                        </svg>
+                    </div>
+                    <h3 data-es="Cultura" data-en="Culture">Cultura</h3>
+                    <p data-es="Sumérgete en un espacio donde el arte y la tradición se encuentran. Exposiciones, eventos y actividades culturales que dan vida a nuestro patrimonio." data-en="Immerse yourself in a space where art and tradition meet. Exhibitions, events, and cultural activities that bring our heritage to life.">
+                        Sumérgete en un espacio donde el arte y la tradición se encuentran. Exposiciones, eventos y actividades culturales que dan vida a nuestro patrimonio.
+                    </p>
+                    <span class="pillar-number">01</span>
+                </div>
+
+                <!-- Historia -->
+                <div class="pillar-card reveal-up" style="--delay: 0.15s">
+                    <div class="pillar-icon-wrap">
+                        <svg class="pillar-icon spin-on-scroll" viewBox="0 0 64 64" fill="none" stroke="#C8A96E" stroke-width="1.5">
+                            <rect x="8" y="12" width="48" height="40" rx="2"/>
+                            <line x1="8" y1="24" x2="56" y2="24"/>
+                            <circle cx="32" cy="18" r="3"/>
+                            <path d="M20 32h24M20 38h18M20 44h20"/>
+                        </svg>
+                    </div>
+                    <h3 data-es="Historia" data-en="History">Historia</h3>
+                    <p data-es="Recorre la historia de un molino de aceite fundado en 1874. Descubre la maquinaria original y las historias que guardan sus muros centenarios." data-en="Walk through the history of an olive oil mill founded in 1874. Discover the original machinery and the stories held within its century-old walls.">
+                        Recorre la historia de un molino de aceite fundado en 1874. Descubre la maquinaria original y las historias que guardan sus muros centenarios.
+                    </p>
+                    <span class="pillar-number">02</span>
+                </div>
+
+                <!-- Gastronomía -->
+                <div class="pillar-card reveal-up" style="--delay: 0.3s">
+                    <div class="pillar-icon-wrap">
+                        <svg class="pillar-icon spin-on-scroll" viewBox="0 0 64 64" fill="none" stroke="#C8A96E" stroke-width="1.5">
+                            <ellipse cx="32" cy="40" rx="24" ry="10"/>
+                            <path d="M32 8v20M24 12c0-6 16-6 16 0"/>
+                            <path d="M8 40c0 8 10.7 14 24 14s24-6 24-14"/>
+                        </svg>
+                    </div>
+                    <h3 data-es="Gastronomía" data-en="Gastronomy">Gastronomía</h3>
+                    <p data-es="Disfruta de una cocina que honra la tradición andaluza con un toque contemporáneo. Productos de la tierra, recetas con alma y sabores que perduran." data-en="Enjoy cuisine that honors Andalusian tradition with a contemporary touch. Local products, soulful recipes, and flavors that endure.">
+                        Disfruta de una cocina que honra la tradición andaluza con un toque contemporáneo. Productos de la tierra, recetas con alma y sabores que perduran.
+                    </p>
+                    <span class="pillar-number">03</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         HORIZONTAL GALLERY
+    ══════════════════════════════════════════════ -->
+    <section class="section section-gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <span class="section-label" data-es="Galería" data-en="Gallery">Galería</span>
+                <div class="section-line"></div>
+            </div>
+        </div>
+        <div class="gallery-horizontal" id="galleryTrack">
+            <div class="gallery-item">
+                <div class="gallery-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Interior del restaurante" loading="lazy">
+                </div>
+                <span class="gallery-caption" data-es="El salón principal" data-en="The main hall">El salón principal</span>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80" alt="Gastronomía" loading="lazy">
+                </div>
+                <span class="gallery-caption" data-es="Gastronomía de autor" data-en="Signature cuisine">Gastronomía de autor</span>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1560624052-449f5ddf0c31?auto=format&fit=crop&w=800&q=80" alt="Ambiente rústico" loading="lazy">
+                </div>
+                <span class="gallery-caption" data-es="Ambiente único" data-en="Unique atmosphere">Ambiente único</span>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1571167366136-b57e07761625?auto=format&fit=crop&w=800&q=80" alt="Aceite de oliva" loading="lazy">
+                </div>
+                <span class="gallery-caption" data-es="Aceite de oliva virgen" data-en="Virgin olive oil">Aceite de oliva virgen</span>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Plato gourmet" loading="lazy">
+                </div>
+                <span class="gallery-caption" data-es="Sabores de la tierra" data-en="Flavors of the land">Sabores de la tierra</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         GASTRONOMÍA SECTION
+    ══════════════════════════════════════════════ -->
+    <section id="gastronomia" class="section section-gastronomia">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <span class="section-label" data-es="Gastronomía" data-en="Gastronomy">Gastronomía</span>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="gastro-grid">
+                <div class="gastro-text">
+                    <h2 class="reveal-text" data-es="Donde la tradición se encuentra con la innovación" data-en="Where tradition meets innovation">
+                        Donde la tradición<br>se encuentra con<br>la innovación
+                    </h2>
+                    <p class="reveal-up" data-es="Nuestra cocina rinde homenaje a los sabores de Córdoba y Andalucía, reinterpretándolos con técnicas contemporáneas. Cada ingrediente cuenta una historia, cada plato es una experiencia sensorial que conecta pasado y presente." data-en="Our cuisine pays homage to the flavors of Córdoba and Andalusia, reinterpreting them with contemporary techniques. Every ingredient tells a story, every dish is a sensory experience connecting past and present.">
+                        Nuestra cocina rinde homenaje a los sabores de Córdoba y Andalucía, reinterpretándolos con técnicas contemporáneas. Cada ingrediente cuenta una historia, cada plato es una experiencia sensorial que conecta pasado y presente.
+                    </p>
+                    <div class="gastro-features reveal-up">
+                        <div class="gastro-feature">
+                            <span class="feature-icon">◆</span>
+                            <span data-es="Producto local y de temporada" data-en="Local and seasonal produce">Producto local y de temporada</span>
+                        </div>
+                        <div class="gastro-feature">
+                            <span class="feature-icon">◆</span>
+                            <span data-es="Aceite de oliva virgen extra propio" data-en="Our own extra virgin olive oil">Aceite de oliva virgen extra propio</span>
+                        </div>
+                        <div class="gastro-feature">
+                            <span class="feature-icon">◆</span>
+                            <span data-es="Cocina de raíces andaluzas" data-en="Andalusian-rooted cuisine">Cocina de raíces andaluzas</span>
+                        </div>
+                        <div class="gastro-feature">
+                            <span class="feature-icon">◆</span>
+                            <span data-es="Maridaje con vinos de la región" data-en="Paired with regional wines">Maridaje con vinos de la región</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gastro-images">
+                    <div class="gastro-img gastro-img-1 reveal-up">
+                        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80" alt="Plato gourmet" loading="lazy">
+                    </div>
+                    <div class="gastro-img gastro-img-2 reveal-up" style="--delay: 0.2s">
+                        <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?auto=format&fit=crop&w=600&q=80" alt="Ingredientes frescos" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         QUOTE / DIVIDER
+    ══════════════════════════════════════════════ -->
+    <section class="section section-quote">
+        <div class="container">
+            <blockquote class="big-quote reveal-text" data-es="«Donde cada piedra cuenta una historia y cada plato celebra nuestra tierra»" data-en="'Where every stone tells a story and every dish celebrates our land'">
+                «Donde cada piedra cuenta una historia<br>y cada plato celebra nuestra tierra»
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         RESERVAS SECTION
+    ══════════════════════════════════════════════ -->
+    <section id="reservas" class="section section-reservas">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <span class="section-label" data-es="Reservas" data-en="Reservations">Reservas</span>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="reservas-grid">
+                <div class="reservas-info">
+                    <h2 class="reveal-text" data-es="Reserve su experiencia" data-en="Book your experience">
+                        Reserve su<br>experiencia
+                    </h2>
+                    <p class="reveal-up" data-es="Le recomendamos reservar con antelación para garantizar su mesa. También puede decidir en el momento y reservar directamente desde su móvil." data-en="We recommend booking in advance to guarantee your table. You can also decide on the spot and book directly from your phone.">
+                        Le recomendamos reservar con antelación para garantizar su mesa. También puede decidir en el momento y reservar directamente desde su móvil.
+                    </p>
+                    <div class="reservas-contact reveal-up">
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                            <a href="tel:+34648606480">648 606 480</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <a href="mailto:molinoderamiro@gmail.com">molinoderamiro@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="reservas-form reveal-up" id="reservationForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="formName" name="name" required autocomplete="name">
+                            <label for="formName" data-es="Nombre completo" data-en="Full name">Nombre completo</label>
+                            <div class="form-line"></div>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <input type="email" id="formEmail" name="email" required autocomplete="email">
+                            <label for="formEmail" data-es="Email" data-en="Email">Email</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="formPhone" name="phone" required autocomplete="tel">
+                            <label for="formPhone" data-es="Teléfono" data-en="Phone">Teléfono</label>
+                            <div class="form-line"></div>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-3">
+                        <div class="form-group">
+                            <input type="date" id="formDate" name="date" required>
+                            <label for="formDate" class="label-active" data-es="Fecha" data-en="Date">Fecha</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <select id="formTime" name="time" required>
+                                <option value="" disabled selected></option>
+                                <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="20:00">20:00</option>
+                                <option value="20:30">20:30</option>
+                                <option value="21:00">21:00</option>
+                                <option value="21:30">21:30</option>
+                                <option value="22:00">22:00</option>
+                            </select>
+                            <label for="formTime" class="label-active" data-es="Hora" data-en="Time">Hora</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <select id="formGuests" name="guests" required>
+                                <option value="" disabled selected></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10+</option>
+                            </select>
+                            <label for="formGuests" class="label-active" data-es="Comensales" data-en="Guests">Comensales</label>
+                            <div class="form-line"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <textarea id="formMessage" name="message" rows="3"></textarea>
+                            <label for="formMessage" data-es="Peticiones especiales (alergias, celebraciones...)" data-en="Special requests (allergies, celebrations...)">Peticiones especiales (alergias, celebraciones...)</label>
+                            <div class="form-line"></div>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-check">
+                        <label class="checkbox-wrap">
+                            <input type="checkbox" id="formPrivacy" name="privacy" required>
+                            <span class="checkmark"></span>
+                            <span class="checkbox-text" data-es="Acepto la <a href='legal/politica-privacidad.html'>política de privacidad</a>" data-en="I accept the <a href='legal/politica-privacidad.html'>privacy policy</a>">Acepto la <a href="legal/politica-privacidad.html">política de privacidad</a></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-primary btn-submit">
+                        <span data-es="Enviar Reserva" data-en="Send Reservation">Enviar Reserva</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </button>
+                    <div class="form-success" id="formSuccess">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <p data-es="¡Reserva enviada con éxito! Nos pondremos en contacto para confirmar." data-en="Reservation sent successfully! We will contact you to confirm.">¡Reserva enviada con éxito! Nos pondremos en contacto para confirmar.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         CONTACTO SECTION
+    ══════════════════════════════════════════════ -->
+    <section id="contacto" class="section section-contacto">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">06</span>
+                <span class="section-label" data-es="Contacto" data-en="Contact">Contacto</span>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="contacto-grid">
+                <div class="contacto-info">
+                    <h2 class="reveal-text" data-es="Encuéntranos" data-en="Find Us">Encuéntranos</h2>
+
+                    <div class="contacto-details reveal-up">
+                        <div class="contacto-item">
+                            <div class="contacto-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 data-es="Dirección" data-en="Address">Dirección</h4>
+                                <p>Calle los Molinos 29<br>14840 Castro del Río, Córdoba</p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <div class="contacto-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 data-es="Teléfono" data-en="Phone">Teléfono</h4>
+                                <p><a href="tel:+34648606480">648 606 480</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <div class="contacto-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:molinoderamiro@gmail.com">molinoderamiro@gmail.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contacto-map reveal-up">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12612.0!2d-4.477!3d37.687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQxJzEzLjIiTiA0wrAyOCczNy4yIlc!5e0!3m2!1ses!2ses!4v1"
+                        width="100%"
+                        height="450"
+                        style="border:0; border-radius: 8px; filter: grayscale(0.8) contrast(1.1);"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Ubicación Molino de Ramiro">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">MOLINO DE RAMIRO</h3>
+                    <p class="footer-tagline" data-es="Museo · Restaurante · Historia Viva" data-en="Museum · Restaurant · Living History">Museo · Restaurante · Historia Viva</p>
+                    <p class="footer-since" data-es="Desde 1874" data-en="Since 1874">Desde 1874</p>
+                </div>
+
+                <div class="footer-nav">
+                    <h4 data-es="Navegación" data-en="Navigation">Navegación</h4>
+                    <a href="#hero" data-es="Inicio" data-en="Home">Inicio</a>
+                    <a href="#historia" data-es="Historia" data-en="History">Historia</a>
+                    <a href="#experiencia" data-es="Experiencia" data-en="Experience">Experiencia</a>
+                    <a href="#gastronomia" data-es="Gastronomía" data-en="Gastronomy">Gastronomía</a>
+                    <a href="#reservas" data-es="Reservas" data-en="Reservations">Reservas</a>
+                    <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+                </div>
+
+                <div class="footer-legal-links">
+                    <h4 data-es="Legal" data-en="Legal">Legal</h4>
+                    <a href="legal/politica-privacidad.html" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a>
+                    <a href="legal/terminos-legales.html" data-es="Términos Legales" data-en="Legal Terms">Términos Legales</a>
+                    <a href="legal/aviso-legal.html" data-es="Aviso Legal" data-en="Legal Notice">Aviso Legal</a>
+                </div>
+
+                <div class="footer-contact">
+                    <h4 data-es="Contacto" data-en="Contact">Contacto</h4>
+                    <p>Calle los Molinos 29<br>14840 Castro del Río, Córdoba</p>
+                    <p><a href="tel:+34648606480">648 606 480</a></p>
+                    <p><a href="mailto:molinoderamiro@gmail.com">molinoderamiro@gmail.com</a></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Molino de Ramiro. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════════════
+         SCRIPTS
+    ══════════════════════════════════════════════ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/three-scene.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>
